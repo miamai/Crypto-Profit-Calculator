@@ -1,0 +1,44 @@
+@import 'https://code.highcharts.com/css/highcharts.css';
+
+.chartContainer {
+  height: 100px;
+  min-width: 150px;
+  max-width: 700px;
+}
+
+.chartModalContainer {
+  height: 300px;
+}
+
+.pointerChart {
+  cursor: pointer;
+}
+
+.highcharts-root {
+  font-family: monospace;
+  font-size: 14px;
+}
+
+.highcharts-color-0 {
+  fill: #f5b041;
+  stroke: #f5b041;
+}
+
+.highcharts-background {
+  fill: none;
+}
+
+.highcharts-axis-labels,
+.highcharts-axis-title,
+.highcharts-legend-item text {
+  fill: #ffffff;
+}
+
+.highcharts-axis-title {
+  margin: 0;
+}
+
+.highcharts-yaxis-grid .highcharts-grid-line {
+  stroke-width: 2px;
+  stroke: #ffffff;
+}
