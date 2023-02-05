@@ -7,41 +7,37 @@ const style = {
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: 400,
+  width: [320, 400, null],
   bgcolor: '#ffffff',
-  border: '2px solid #000',
   boxShadow: 24,
-  p: 4,
+  p: [2, 4, null],
   textAlign: 'center',
 };
 
 const ErrorModal = () => {
   const [open, setOpen] = useState(true);
-  const handleClose = () => setOpen(false);
 
   return (
-    <div>
-      <Modal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby='modal-modal-title'
-        aria-describedby='modal-modal-description'
-      >
-        <Box sx={style}>
-          <Box sx={{ color: 'secondary.main' }}>
-            <AnnouncementIcon fontSize='large' />
-            <Typography id='modal-modal-title' variant='h5' component='h2'>
-              錯誤發生
-            </Typography>
-          </Box>
-          <Typography id='modal-modal-description' sx={{ mt: 2 }}>
-            請選擇一個貨幣，或是所選的幣無法取得資料
-            <br />
-            請再試一次!
+    <Modal
+      open={open}
+      onClose={() => setOpen(false)}
+      aria-labelledby='modal-modal-title'
+      aria-describedby='modal-modal-description'
+    >
+      <Box sx={style}>
+        <Box sx={{ color: 'secondary.main' }}>
+          <AnnouncementIcon fontSize='large' />
+          <Typography id='modal-modal-title' variant='h5' component='h2'>
+            錯誤發生
           </Typography>
         </Box>
-      </Modal>
-    </div>
+        <Typography id='modal-modal-description' sx={{ mt: 2 }}>
+          請選擇一個貨幣，或是所選的幣無法取得資料
+          <br />
+          "表格"按鈕刪除，請再試一次!
+        </Typography>
+      </Box>
+    </Modal>
   );
 };
 

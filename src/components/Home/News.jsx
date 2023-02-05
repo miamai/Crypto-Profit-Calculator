@@ -1,4 +1,3 @@
-import React from 'react';
 import { useState } from 'react';
 import moment from 'moment';
 import {
@@ -7,8 +6,6 @@ import {
   Avatar,
   Card,
   CardActionArea,
-  // CardContent,
-  // CardMedia,
   Autocomplete,
   Box,
   TextField,
@@ -18,10 +15,10 @@ import { cryptoList } from '../../UI/CryptoSearchInput';
 
 const style = {
   loadingBox: {
+    flexGrow: 1,
     display: 'flex',
     flexDirection: 'column',
     gap: '16px',
-    height: '100vh',
     alignItems: 'center',
     justifyContent: 'center',
   },

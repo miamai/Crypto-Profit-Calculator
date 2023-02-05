@@ -1,4 +1,3 @@
-// import React from 'react';
 import { useContext, useState } from 'react';
 import { Paper, TextField, Button, Box } from '@mui/material';
 import CryptoSearchInput from '../../UI/CryptoSearchInput';
@@ -20,6 +19,8 @@ const InputForm = () => {
   const submitFormHandler = (e) => {
     e.preventDefault();
     addItemHandler(enteredCoin, enteredCost, enteredQuantity);
+    setEnteredCost('');
+    setEnteredQuantity('');
   };
 
   return (

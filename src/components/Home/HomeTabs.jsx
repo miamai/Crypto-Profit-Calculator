@@ -1,11 +1,9 @@
-import React from 'react';
 import { useNavigate, useLocation } from 'react-router';
 import { useState, useEffect, useContext } from 'react';
 
 import { Box, Tabs, Tab, Typography } from '@mui/material';
 import { navtabItems } from '../../UI/consts/navtabItems';
 import MyProfit from '../CaculatorForms/MyProfit';
-import HeaderBar from './HeaderBar';
 import FormContext from '../../store/form-context';
 import { onStore } from '../Login/auth';
 
@@ -40,15 +38,10 @@ const HomeTabs = () => {
     // store data
     onStore(inputList, outputList, searchList);
     console.log('成功儲存');
-    // if (performance.navigation.type === 1) {
-    //   // page was just refreshed:
-    //   navigate('/');
-    // }
   }, [location, inputList, outputList, searchList]);
 
   return (
     <>
-      <HeaderBar />
       <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
         <Tabs value={value}>
           {navtabItems.map((item) => (

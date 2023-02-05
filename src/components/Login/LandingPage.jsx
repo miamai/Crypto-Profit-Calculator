@@ -1,5 +1,4 @@
-import React from 'react';
-import { useRef, useContext } from 'react';
+import { useRef, useContext, useState } from 'react';
 import { useNavigate } from 'react-router';
 
 import {
@@ -10,6 +9,7 @@ import {
   Typography,
   Button,
   TextField,
+  CircularProgress,
 } from '@mui/material';
 import { landingTheme } from '../../UI/consts/themeOption';
 import { onAuth, isAuthStateChanged } from './auth';
@@ -18,34 +18,30 @@ import FormContext from '../../store/form-context';
 const LandingPage = () => {
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
+  const [buttonLoading, setButtonLoading] = useState(false);
   const { initHandler } = useContext(FormContext);
   const navigate = useNavigate();
 
-  const signInHandler = (e) => {
+  const signInHandler = async (e) => {
     e.preventDefault();
+    setButtonLoading(true);
     const enteredEmail = emailInputRef.current.value;
     const enteredPassword = passwordInputRef.current.value;
 
-    let emailRegex =
-      /^(([^<>()\\.,;:\s@"]+(\.[^<>()\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-
-    if (!emailRegex.test(String(enteredEmail).toLowerCase())) {
-      alert('請輸入正確信箱');
-    }
-    if (enteredPassword.length < 6) {
-      alert('密碼至少6位');
-    }
-
-    onAuth(enteredEmail, enteredPassword).then((res) => {
+    const res = await onAuth(enteredEmail, enteredPassword);
+    if (res) {
       const { inputData, outputData, searchData } = res.data;
       initHandler(inputData, outputData, searchData);
-    });
+    }
 
-    isAuthStateChanged((user) => {
-      if (user) {
-        navigate('/home');
-      }
+    const user = await new Promise((resolve) => {
+      isAuthStateChanged((user) => {
+        resolve(user);
+      });
     });
+    if (user) {
+      navigate('/home');
+    }
   };
 
   return (
@@ -86,7 +82,11 @@ const LandingPage = () => {
               串聯幣安API，計算你台幣買賣損益外，可幫你保存紀錄
             </Typography>
             <br />
-            <img src='/images/TransactionalSMS.svg' width='70%' />
+            <img
+              src='/images/TransactionalSMS.svg'
+              width='70%'
+              alt='trader picture'
+            />
           </Box>
         </Grid>
       </Hidden>
@@ -124,21 +124,34 @@ const LandingPage = () => {
             required
             inputRef={passwordInputRef}
           />
-          <FormControl margin={'normal'} fullWidth>
-            <Button type='submit' variant='contained'>
+          <FormControl
+            margin={'normal'}
+            fullWidth
+            sx={{ position: 'relative' }}
+          >
+            <Button type='submit' variant='contained' disabled={buttonLoading}>
               登入 / 註冊
             </Button>
+            {buttonLoading && (
+              <CircularProgress
+                size='24px'
+                thickness={6}
+                sx={{
+                  color: 'primary.main',
+                  position: 'absolute',
+                  top: '50%',
+                  left: '50%',
+                  marginTop: '-12px',
+                  marginLeft: '-12px',
+                }}
+              />
+            )}
           </FormControl>
           <Typography sx={{ mt: 8 }}>
             Test account: test123@testmail.com
             <br />
             password: test123
           </Typography>
-          {/* {isLoading ? (
-            <img src='/images/loading-200px.svg' alt='Loading...' width='24' />
-          ) : (
-            <div>{msg}</div>
-          )} */}
         </Box>
       </Grid>
     </Grid>

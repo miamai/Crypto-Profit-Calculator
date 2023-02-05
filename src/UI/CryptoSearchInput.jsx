@@ -1,10 +1,7 @@
 import * as React from 'react';
-import { useState } from 'react';
 import { Box, TextField, Autocomplete } from '@mui/material';
 
 const CryptoSearchInput = (props) => {
-  const [selectedValue, setSelectedValue] = useState('');
-
   return (
     <Autocomplete
       id='crypto-select'
@@ -12,7 +9,6 @@ const CryptoSearchInput = (props) => {
       sx={{ width: ['100%', '300px'] }}
       onChange={(event, newValue) => {
         event.defaultMuiPrevented = true;
-        setSelectedValue(newValue);
         props.setEnteredCoin(newValue.symbol);
       }}
       getOptionLabel={(option) => option.symbol}
@@ -31,7 +27,7 @@ const CryptoSearchInput = (props) => {
         </Box>
       )}
       renderInput={(params) => (
-        <TextField {...params} variant='filled' label='持有幣' />
+        <TextField {...params} variant='filled' label='貨幣' />
       )}
     />
   );

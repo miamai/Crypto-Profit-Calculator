@@ -8,17 +8,19 @@ import {
   TableRow,
   Paper,
   IconButton,
+  Tooltip,
   Box,
 } from '@mui/material';
 import StarIcon from '@mui/icons-material/Star';
+import HelpIcon from '@mui/icons-material/Help';
 
-import { PriceTableCell } from '../../UI/consts/commonStyle';
+import { PriceTableCell, CenterTableCell } from '../../UI/TableCellStyle';
 import FormContext from '../../store/form-context';
 import Chart from './Chart';
 
 const FavoritesForm = ({ coindata }) => {
   const { removeItemHandler, searchList: searchs } = useContext(FormContext);
-
+  const descriptText = `點擊圖表放大`;
   return (
     <div>
       <TableContainer component={Paper}>
@@ -29,14 +31,22 @@ const FavoritesForm = ({ coindata }) => {
               <TableCell>名稱</TableCell>
               <TableCell>價格 USDT</TableCell>
               <TableCell>24hr %</TableCell>
-              <TableCell>24hr 變動</TableCell>
+              <CenterTableCell>
+                24hr 變動
+                <Tooltip title={descriptText} placement='top-start'>
+                  <HelpIcon
+                    sx={{ color: 'primary.main', fontSize: '14px', pl: 1 }}
+                  />
+                </Tooltip>
+              </CenterTableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {searchs.map((search, i) => {
-              const { lastPrice, priceChangePercent } = coindata?.filter(
-                (data) => data.symbol === search.favCoin + 'USDT'
-              )[0];
+              const { lastPrice, priceChangePercent } =
+                coindata?.filter(
+                  (data) => data.symbol === search.favCoin + 'USDT'
+                )[0] || {};
 
               return (
                 <TableRow
@@ -47,7 +57,7 @@ const FavoritesForm = ({ coindata }) => {
                     },
                   }}
                 >
-                  <TableCell>
+                  <CenterTableCell>
                     <IconButton
                       sx={{ padding: 0 }}
                       onClick={() => {
@@ -62,17 +72,15 @@ const FavoritesForm = ({ coindata }) => {
                       />
                     </IconButton>
                     {i}
-                  </TableCell>
-                  <TableCell>
-                    <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                      <img
-                        src={`/cryptoicons/${search.favCoin.toLowerCase()}.svg`}
-                        width='24'
-                        alt='error'
-                      />
-                      {search.favCoin}
-                    </Box>
-                  </TableCell>
+                  </CenterTableCell>
+                  <CenterTableCell>
+                    <img
+                      src={`/cryptoicons/${search.favCoin.toLowerCase()}.svg`}
+                      width='24'
+                      alt='error'
+                    />
+                    {search.favCoin}
+                  </CenterTableCell>
                   <TableCell>{(+lastPrice).toFixed(2)}</TableCell>
                   <PriceTableCell>
                     {(+priceChangePercent).toFixed(2)}

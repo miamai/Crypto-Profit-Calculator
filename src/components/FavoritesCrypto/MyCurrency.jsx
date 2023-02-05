@@ -1,15 +1,20 @@
-import React from 'react';
+import { useContext } from 'react';
+
 import FavoritesForm from './FavoritesForm';
 import FavoritesSearch from './FavoritesSearch';
 import { useFetchData } from '../../hook/fetchCrypto';
+import FormContext from '../../store/form-context';
+import ErrorModal from '../../UI/ErrorModal';
 
 const MyCurrency = () => {
-  const { cryptodata } = useFetchData();
+  const { cryptoData, fetchCryptoError } = useFetchData();
+  const { searchList } = useContext(FormContext);
 
   return (
     <div>
       <FavoritesSearch />
-      {cryptodata && <FavoritesForm coindata={cryptodata} />}
+      {fetchCryptoError && <ErrorModal />}
+      {searchList.length > 0 && <FavoritesForm coindata={cryptoData} />}
     </div>
   );
 };

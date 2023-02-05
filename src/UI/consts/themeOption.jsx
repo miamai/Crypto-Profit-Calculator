@@ -50,8 +50,8 @@ const themeOption = createTheme({
           paddingLeft: '24px',
           paddingRight: '24px',
           '@media (max-width: 600px)': {
-            paddingLeft: '16px',
-            paddingRight: '16px',
+            paddingLeft: '12px',
+            paddingRight: '12px',
           },
         },
       },
@@ -61,6 +61,21 @@ const themeOption = createTheme({
         root: {
           background: '#fff',
           color: '#000',
+        },
+      },
+    },
+    MuiTooltip: {
+      styleOverrides: {
+        tooltip: {
+          backgroundColor: 'rgba(255, 255, 255, 0.7)',
+          border: '1px solid #fff',
+          color: '#000',
+          maxWidth: '200px',
+          fontSize: '14px',
+          '@media (max-width: 600px)': {
+            maxWidth: '150px',
+            fontSize: '12px',
+          },
         },
       },
     },

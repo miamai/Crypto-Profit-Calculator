@@ -11,7 +11,7 @@ import {
 } from '@mui/material';
 import IndeterminateCheckBoxIcon from '@mui/icons-material/IndeterminateCheckBox';
 
-import { PriceTableCell } from '../../UI/consts/commonStyle';
+import { PriceTableCell, CenterTableCell } from '../../UI/TableCellStyle';
 import FormContext from '../../store/form-context';
 
 const CheckedProfitForm = () => {
@@ -36,7 +36,6 @@ const CheckedProfitForm = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {/* 🔺🔺path導致outputs消失 */}
             {outputs?.map((output) => {
               return (
                 <TableRow
@@ -47,7 +46,7 @@ const CheckedProfitForm = () => {
                     },
                   }}
                 >
-                  <TableCell>
+                  <CenterTableCell>
                     <IconButton
                       sx={{ padding: 0 }}
                       onClick={() => removeItemHandler(output.id)}
@@ -57,7 +56,7 @@ const CheckedProfitForm = () => {
                       />
                     </IconButton>
                     {output.coin}
-                  </TableCell>
+                  </CenterTableCell>
                   <TableCell>{output.endPrice.toFixed(2)}</TableCell>
                   <TableCell>{output.cost}</TableCell>
                   <TableCell>

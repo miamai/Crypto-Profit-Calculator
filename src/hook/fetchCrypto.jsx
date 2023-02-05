@@ -1,7 +1,6 @@
 import useSWR from 'swr';
 import { useContext } from 'react';
 import FormContext from '../store/form-context';
-import ErrorModal from '../UI/ErrorModal';
 
 // fetcher
 const fetcher = (url) => fetch(url).then((res) => res.json());
@@ -34,51 +33,35 @@ export function useFetchData() {
 
   const query = [...new Set([...inputcryptos, ...searchcryptos])];
 
-  const {
-    data: cryptodata,
-    isLoading,
-    error,
-  } = useSWR(
+  const { data: cryptoData, error: cryptoError } = useSWR(
     query.length === 0
       ? null
       : `https://api.binance.com/api/v3/ticker/24hr?symbols=[${query}]`,
     fetcher,
-    { refreshInterval: 10000 }
+    { refreshInterval: 5000 }
   );
 
-  const { data: usdtTwdRatio } = useSWR(
+  const { data: usdtTwdRatio, error: twdError } = useSWR(
     'https://api.coinbase.com/v2/exchange-rates?currency=USDT',
     twdFetcher
   );
 
-  //🔺🔺 error modal發生後，空白的無法再fetch一次
-  //   //🔺🔺error的時候應該停止fetch data
-  if (error) {
-    return <ErrorModal />;
-  }
-
   return {
-    cryptodata,
+    cryptoData,
     usdtTwd: +usdtTwdRatio,
-    isLoading,
-    isError: error,
+    fetchCryptoError: cryptoError || twdError,
   };
 }
 
 export function useFetchChart(coin) {
-  const {
-    data: historialData,
-    error,
-    isLoading,
-  } = useSWR(
+  const { data: historialData, error: fetchChartError } = useSWR(
     `https://api.binance.com/api/v1/klines?symbol=${coin}USDT&interval=1h&limit=24&startTime=${start}`,
     chartFetcher,
-    { refreshInterval: 300000 }
+    { refreshInterval: 24 * 60 * 60 * 1000 }
   );
 
   return {
     historialData,
-    error,
-    isLoading,
+    fetchChartError,
   };
 }

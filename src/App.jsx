@@ -1,7 +1,8 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { Box } from '@mui/material';
+import { Box, Typography } from '@mui/material';
+
 import { theme } from './UI/consts/themeOption';
 import RealizedProfit from './components/CheckedData/RealizedProfit';
 import MyCurrency from './components/FavoritesCrypto/MyCurrency';
@@ -13,6 +14,7 @@ import HomeTabs from './components/Home/HomeTabs';
 import WelcomeBack from './components/WelcomeBack';
 import News from './components/Home/News';
 import FormProvider from './store/FormProvider';
+import AuthLayout from './AuthLayout';
 
 const setDefaultBody = (color, margin) => {
   document.body.style.backgroundColor = color;
@@ -24,6 +26,14 @@ function App() {
 
   const [authed, setAuthed] = useState(false);
   const [loading, setLoading] = useState(true);
+
+  const style = {
+    width: '100%',
+    minHeight: '100vh',
+    display: 'flex',
+    flexDirection: 'column',
+    color: 'text.primary',
+  };
 
   useEffect(() => {
     const ifIsLogginIn = isAuthStateChanged((user) => {
@@ -39,31 +49,41 @@ function App() {
   }, []);
 
   return loading ? (
-    <div>等待login</div>
-  ) : (
     <Box
       sx={{
-        width: '100%',
-        color: 'text.primary',
+        ...style,
+        gap: '16px',
+        alignItems: 'center',
+        justifyContent: 'center',
       }}
     >
+      <Typography variant='h5'>Loading...</Typography>
+      <img src='/images/loading-1-200px.svg' alt='Loading...' width='64' />
+    </Box>
+  ) : (
+    <Box sx={{ ...style }}>
       <FormProvider>
         <BrowserRouter>
           <Routes>
             {authed ? (
               <>
-                <Route path='/home' element={<HomeTabs />}>
-                  <Route path='account' element={<MyProfit />} />
-                  <Route path='mycurrency' element={<MyCurrency />} />
-                  <Route path='realized-profit' element={<RealizedProfit />} />
+                <Route path='/' element={<WelcomeBack />} />
+                <Route path='/' element={<AuthLayout />}>
+                  <Route path='/home' element={<HomeTabs />}>
+                    <Route path='account' element={<MyProfit />} />
+                    <Route path='mycurrency' element={<MyCurrency />} />
+                    <Route
+                      path='realized-profit'
+                      element={<RealizedProfit />}
+                    />
+                  </Route>
+                  <Route path='/news' element={<News />} />
                 </Route>
-                <Route path='/news' element={<News />} />
               </>
             ) : (
               <Route path='/' element={<LandingPage />} />
             )}
             <Route path='*' element={<NotFound />} />
-            <Route path='/' element={<WelcomeBack />} />
           </Routes>
         </BrowserRouter>
       </FormProvider>

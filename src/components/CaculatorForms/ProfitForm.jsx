@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import {
   Table,
   TableBody,
@@ -11,21 +11,22 @@ import {
   Box,
 } from '@mui/material';
 
-import { PriceTableCell } from '../../UI/consts/commonStyle';
+import { PriceTableCell } from '../../UI/TableCellStyle';
+import ErrorModal from '../../UI/ErrorModal';
 import FormContext from '../../store/form-context';
 import { useFetchData } from '../../hook/fetchCrypto';
 
 const ProfitForm = () => {
   const { stopItemHandler, inputList: inputs } = useContext(FormContext);
-  const { cryptodata, usdtTwd } = useFetchData();
+  const { cryptoData, usdtTwd, fetchCryptoError } = useFetchData();
 
   const purchaseDate = new Date().toISOString().split('T')[0];
 
   return (
     <div>
+      {fetchCryptoError && <ErrorModal />}
+
       <h2>試算表</h2>
-      {/* <div>inputs:🙋 {JSON.stringify(inputs)}</div>
-      <div>cryptoata: 🙋{JSON.stringify(cryptodata)}</div> */}
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label='simple table'>
           <TableHead>
@@ -42,7 +43,7 @@ const ProfitForm = () => {
           </TableHead>
           <TableBody>
             {inputs.map((input) => {
-              const curPrice = +cryptodata?.filter(
+              const curPrice = +cryptoData?.filter(
                 (data) => data.symbol === input.coin + 'USDT'
               )[0].lastPrice;
 

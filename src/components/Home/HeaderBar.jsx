@@ -1,4 +1,3 @@
-// import React from 'react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
 import { Link } from 'react-router-dom';
@@ -26,7 +25,32 @@ const pages = [
   { label: '首頁', route: '/home' },
   { label: '最新消息', route: '/news' },
 ];
-const style = { color: '#F5B041', textDecoration: 'none' };
+const style = {
+  pageLink: {
+    color: '#F5B041',
+    textDecoration: 'none',
+  },
+  titleLink: {
+    color: '#FFF',
+    textDecoration: 'none',
+  },
+  titleTyp: {
+    ml: 1,
+    flexGrow: 1,
+    display: { xs: 'block', sm: 'block' },
+  },
+  queryIcon: {
+    color: 'primary.main',
+    fontSize: '40px',
+  },
+  drawer: {
+    display: { xs: 'block', sm: 'none' },
+    '& .MuiDrawer-paper': {
+      boxSizing: 'border-box',
+      width: drawerWidth,
+    },
+  },
+};
 
 const HeaderBar = (props) => {
   const navigate = useNavigate();
@@ -48,19 +72,13 @@ const HeaderBar = (props) => {
 
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
-      <QueryStatsRoundedIcon
-        sx={{
-          my: 2,
-          color: 'primary.main',
-          fontSize: '40px',
-        }}
-      />
+      <QueryStatsRoundedIcon sx={{ ...style.queryIcon, my: 2 }} />
       <Divider />
       <List>
         {pages.map((item) => (
           <ListItem key={item.label} disablePadding>
             <ListItemButton sx={{ justifyContent: 'center' }}>
-              <Link style={style} to={item.route}>
+              <Link style={style.pageLink} to={item.route}>
                 {item.label}
               </Link>
             </ListItemButton>
@@ -87,34 +105,28 @@ const HeaderBar = (props) => {
             aria-label='open drawer'
             edge='start'
             onClick={handleDrawerToggle}
-            sx={{ mr: 2, display: { sm: 'none' } }}
+            sx={{ ml: -1, mr: 2, display: { sm: 'none' } }}
           >
             <MenuIcon />
           </IconButton>
-          <QueryStatsRoundedIcon
-            sx={{
-              color: 'primary.main',
-              fontSize: '40px',
-              display: { xs: 'none', sm: 'block' },
-            }}
-            fontSize='large'
-          />
-          <Typography
-            variant='h6'
-            component='div'
-            sx={{
-              ml: 1,
-              flexGrow: 1,
-              display: { xs: 'block', sm: 'block' },
-              color: 'primary',
-            }}
-          >
-            CRYPTO PROFITS
+          <Link to='/home'>
+            <QueryStatsRoundedIcon
+              sx={{
+                ...style.queryIcon,
+                display: { xs: 'none', sm: 'block' },
+              }}
+              fontSize='large'
+            />
+          </Link>
+          <Typography variant='h6' component='div' sx={style.titleTyp}>
+            <Link style={style.titleLink} to='/home'>
+              CRYPTO PROFITS
+            </Link>
           </Typography>
           <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
             {pages.map((item) => (
               <Button key={item.label} sx={{ color: 'primary' }}>
-                <Link style={style} to={item.route}>
+                <Link style={style.pageLink} to={item.route}>
                   {item.label}
                 </Link>
               </Button>
@@ -135,13 +147,7 @@ const HeaderBar = (props) => {
           ModalProps={{
             keepMounted: true, // Better open performance on mobile.
           }}
-          sx={{
-            display: { xs: 'block', sm: 'none' },
-            '& .MuiDrawer-paper': {
-              boxSizing: 'border-box',
-              width: drawerWidth,
-            },
-          }}
+          sx={style.drawer}
         >
           {drawer}
         </Drawer>

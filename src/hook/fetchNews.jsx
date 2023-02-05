@@ -5,7 +5,7 @@ const newsFetcher = (url) => {
   return fetch(url, {
     headers: {
       'X-BingApis-SDK': 'true',
-      'X-RapidAPI-Key': '84146c9a50msh025d8d05479e9b0p1704e6jsn9b09ddfeb464',
+      'X-RapidAPI-Key': import.meta.env.VITE_RAPID_API_KEY,
       'X-RapidAPI-Host': 'bing-news-search1.p.rapidapi.com',
     },
   })
@@ -16,7 +16,7 @@ const newsFetcher = (url) => {
 };
 
 export function useFetchNews(newsCategory) {
-  const { data: newsData, isLoading } = useSWR(
+  const { data: newsData } = useSWR(
     `https://bing-news-search1.p.rapidapi.com/news/search?q=${newsCategory}&safeSearch=Off&textFormat=Raw&freshness=Day`,
     newsFetcher
   );
