@@ -27,7 +27,12 @@ const CryptoSearchInput = (props) => {
         </Box>
       )}
       renderInput={(params) => (
-        <TextField {...params} variant='filled' label='貨幣' />
+        <TextField
+          {...params}
+          inputProps={{ ...params.inputProps, autoComplete: 'coin' }}
+          variant='filled'
+          label='貨幣'
+        />
       )}
     />
   );
