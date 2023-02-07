@@ -86,6 +86,9 @@ export const theme = responsiveFontSizes(themeOption);
 
 export const landingTheme = {
   gridContainer: {
+    maxWidth: '1200px',
+    justifyContent: 'center',
+    margin: '0 auto',
     minHeight: { xs: 566, sm: 700 },
     position: ['relative', null, null],
   },
@@ -101,9 +104,9 @@ export const landingTheme = {
   },
 
   content: {
-    position: 'relative',
     zIndex: 1,
     paddingLeft: 5,
+    position: 'relative',
   },
   brand: {
     fontWeight: 900,

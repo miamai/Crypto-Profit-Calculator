@@ -34,9 +34,11 @@ const FavoritesForm = ({ coindata }) => {
               <CenterTableCell>
                 24hr 變動
                 <Tooltip title={descriptText} placement='top-start'>
-                  <HelpIcon
-                    sx={{ color: 'primary.main', fontSize: '14px', pl: 1 }}
-                  />
+                  <IconButton>
+                    <HelpIcon
+                      sx={{ color: 'primary.main', fontSize: '14px' }}
+                    />
+                  </IconButton>
                 </Tooltip>
               </CenterTableCell>
             </TableRow>

@@ -1,4 +1,4 @@
-import { Box, Tooltip } from '@mui/material';
+import { Box, IconButton, Tooltip } from '@mui/material';
 import HelpIcon from '@mui/icons-material/Help';
 
 import CheckedProfitForm from './CheckedProfitForm';
@@ -8,10 +8,12 @@ const RealizedProfit = () => {
 
   return (
     <>
-      <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+      <Box sx={{ display: 'flex', alignItems: 'center' }}>
         <h2>結算表</h2>
         <Tooltip title={descriptText} placement='right'>
-          <HelpIcon sx={{ color: 'primary.main', fontSize: '18px' }} />
+          <IconButton>
+            <HelpIcon sx={{ color: 'primary.main', fontSize: '18px' }} />
+          </IconButton>
         </Tooltip>
       </Box>
       <CheckedProfitForm />

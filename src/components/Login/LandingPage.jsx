@@ -66,8 +66,8 @@ const LandingPage = () => {
           container
           alignItems='center'
           item
+          // Grid container 12 by default
           sm={6}
-          md={7}
           sx={landingTheme.gridItemBanner}
         >
           <Box sx={landingTheme.content}>
@@ -84,7 +84,7 @@ const LandingPage = () => {
             <br />
             <img
               src='/images/TransactionalSMS.svg'
-              width='70%'
+              width='65%'
               alt='trader picture'
             />
           </Box>

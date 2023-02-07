@@ -4,7 +4,7 @@ import { Box, TextField, Autocomplete } from '@mui/material';
 const CryptoSearchInput = (props) => {
   return (
     <Autocomplete
-      id='crypto-select'
+      // id='crypto-select'
       options={cryptoList}
       sx={{ width: ['100%', '300px'] }}
       onChange={(event, newValue) => {

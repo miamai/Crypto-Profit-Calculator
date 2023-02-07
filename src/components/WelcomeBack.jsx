@@ -36,11 +36,11 @@ const WelcomeBack = () => {
   return (
     <Box sx={style.box}>
       <img src='/images/Personal-finance.svg' width='40%' alt='welcome back' />
-      <Typography lineHeight='1' fontWeight='900' variant='h1'>
+      <Typography lineHeight='1' variant='h3' p='16px'>
         WelcomeBack! {userName}
       </Typography>
       <Button>
-        <Typography variant='h3'>
+        <Typography variant='h4'>
           <Link style={style.router} to={'/home'}>
             Go back to Account
           </Link>

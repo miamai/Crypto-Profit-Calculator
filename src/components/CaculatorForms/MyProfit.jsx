@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { Tooltip, Box } from '@mui/material';
+import { Tooltip, Box, IconButton } from '@mui/material';
 import HelpIcon from '@mui/icons-material/Help';
 import FormContext from '../../store/form-context';
 import InputForm from './InputForm';
@@ -10,10 +10,12 @@ const MyProfit = () => {
   const descriptText = `一鍵輸入!以USDT貨幣交易對，計算您的台幣損益`;
   return (
     <>
-      <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+      <Box sx={{ display: 'flex', alignItems: 'center' }}>
         <h2>損益計算表</h2>
         <Tooltip title={descriptText} placement='right'>
-          <HelpIcon sx={{ color: 'primary.main', fontSize: '18px' }} />
+          <IconButton>
+            <HelpIcon sx={{ color: 'primary.main', fontSize: '18px' }} />
+          </IconButton>
         </Tooltip>
       </Box>
       <InputForm />

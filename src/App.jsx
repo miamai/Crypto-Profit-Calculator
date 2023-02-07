@@ -15,6 +15,7 @@ import WelcomeBack from './components/WelcomeBack';
 import News from './components/Home/News';
 import FormProvider from './store/FormProvider';
 import AuthLayout from './AuthLayout';
+import About from './components/Home/About';
 
 const setDefaultBody = (color, margin) => {
   document.body.style.backgroundColor = color;
@@ -78,6 +79,7 @@ function App() {
                     />
                   </Route>
                   <Route path='/news' element={<News />} />
+                  <Route path='/about' element={<About />} />
                 </Route>
               </>
             ) : (

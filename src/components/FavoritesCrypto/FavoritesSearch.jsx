@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useContext, useState } from 'react';
-import { Box, Button, Tooltip } from '@mui/material';
+import { Box, Button, IconButton, Tooltip } from '@mui/material';
 import HelpIcon from '@mui/icons-material/Help';
 import FormContext from '../../store/form-context';
 import CryptoSearchInput from '../../UI/CryptoSearchInput';
@@ -22,10 +22,12 @@ const FavoritesSearch = () => {
 
   return (
     <>
-      <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+      <Box sx={{ display: 'flex', alignItems: 'center' }}>
         <h2>我的貨幣表</h2>
         <Tooltip title={descriptText} placement='right'>
-          <HelpIcon sx={{ color: 'primary.main', fontSize: '18px' }} />
+          <IconButton>
+            <HelpIcon sx={{ color: 'primary.main', fontSize: '18px' }} />
+          </IconButton>
         </Tooltip>
       </Box>
       <Box component='form' sx={style} onSubmit={submitSearchHandler}>

@@ -49,11 +49,11 @@ const NotFound = () => {
   return (
     <Box sx={style.box}>
       <img src='/images/404NotFound.svg' width='40%' alt='404' />
-      <Typography lineHeight='1' fontWeight='900' variant='h1'>
+      <Typography lineHeight='1' variant='h3' p='16px'>
         404
       </Typography>
       <Button>
-        <Typography variant='h3'>{backLink}</Typography>
+        <Typography variant='h4'>{backLink}</Typography>
       </Button>
     </Box>
   );
