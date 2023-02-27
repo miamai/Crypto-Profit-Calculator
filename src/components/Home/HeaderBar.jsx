@@ -18,7 +18,6 @@ import {
 import QueryStatsRoundedIcon from '@mui/icons-material/QueryStatsRounded';
 import LogoutIcon from '@mui/icons-material/Logout';
 import MenuIcon from '@mui/icons-material/Menu';
-import GitHubIcon from '@mui/icons-material/GitHub';
 import { onLogOut, isAuthStateChanged } from '../Login/auth';
 
 const drawerWidth = 240;

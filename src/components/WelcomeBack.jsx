@@ -12,7 +12,6 @@ const style = {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    textAlign: 'center',
     flexDirection: 'column',
   },
   router: {
@@ -35,9 +34,8 @@ const WelcomeBack = () => {
 
   return (
     <Box sx={style.box}>
-      <img src='/images/Personal-finance.svg' width='40%' alt='welcome back' />
       <Typography lineHeight='1' variant='h3' p='16px'>
-        WelcomeBack! {userName}
+        WelcomeBack | {userName}
       </Typography>
       <Button>
         <Typography variant='h4'>

@@ -110,7 +110,6 @@ const Chart = ({ chart_coin }) => {
       ],
     },
   };
-  //   console.log(options.series);
 
   return (
     <>

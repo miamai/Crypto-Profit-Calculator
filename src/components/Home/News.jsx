@@ -37,8 +37,6 @@ const News = () => {
     },
   ];
 
-  console.log(newsData); //🔺🔺
-
   if (!newsData)
     return (
       <Box sx={style.loadingBox}>

@@ -11,7 +11,6 @@ const style = {
     height: '100%',
     display: 'flex',
     justifyContent: 'center',
-    alignItems: 'center',
     textAlign: 'center',
     flexDirection: 'column',
   },
@@ -30,7 +29,6 @@ const NotFound = () => {
       onGetData().then((res) => {
         const { inputData, outputData, searchData } = res.data;
         initHandler(inputData, outputData, searchData);
-        console.log(inputData, outputData, searchData);
       });
 
       setBackLink(
@@ -48,7 +46,6 @@ const NotFound = () => {
 
   return (
     <Box sx={style.box}>
-      <img src='/images/404NotFound.svg' width='40%' alt='404' />
       <Typography lineHeight='1' variant='h3' p='16px'>
         404
       </Typography>
