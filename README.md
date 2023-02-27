@@ -1,6 +1,6 @@
-### Netlify 網頁連結(https://crypto-profit-web.netlify.app/)
+### [Netlify 網頁連結](https://crypto-profit-web.netlify.app/)
 
-![preview](/ezgif.com-crop.apng)
+![preview](https://github.com/miamai/Crypto-Profit-Caculator/blob/main/public/preview.png)
 
 ### 介紹
 
