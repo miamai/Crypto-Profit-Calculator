@@ -37,7 +37,6 @@ const HomeTabs = () => {
     }
     // store data
     onStore(inputList, outputList, searchList);
-    console.log('成功儲存');
   }, [location, inputList, outputList, searchList]);
 
   return (
