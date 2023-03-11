@@ -9,19 +9,21 @@ const About = () => {
       color: 'primary.main',
       borderBottom: '2px solid #F5B041',
     },
+    container: {
+      pt: '48px',
+      pr: { xs: '16px', sm: '24px' },
+      pl: { xs: '16px', sm: '24px' },
+      m: '0 auto',
+      maxWidth: '900px',
+    },
   };
   return (
-    <Box
-      sx={{
-        pt: '48px',
-        pr: { xs: '16px', sm: '24px' },
-        pl: { xs: '16px', sm: '24px' },
-        m: '0 auto',
-        maxWidth: '900px',
-      }}
-    >
+    <Box sx={style.container}>
       <ul>
         <Button
+          component='a'
+          target='_blank'
+          href='https://github.com/miamai/Crypto-Profit-Calculator'
           variant='outlined'
           sx={{
             fontSize: '16px',
