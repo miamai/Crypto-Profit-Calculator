@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import { Box, Typography, Modal } from '@mui/material';
+import { Box, Typography, Modal, SxProps, Theme } from '@mui/material';
 import AnnouncementIcon from '@mui/icons-material/Announcement';
 
-const style = {
+const style: SxProps<Theme> = {
   position: 'absolute',
   top: '50%',
   left: '50%',

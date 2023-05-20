@@ -1,6 +1,6 @@
 import useSWR from 'swr';
 
-const newsFetcher = (url) => {
+const newsFetcher = (url: URL) => {
   //Explicit return
   return fetch(url, {
     headers: {
@@ -15,7 +15,7 @@ const newsFetcher = (url) => {
     });
 };
 
-export function useFetchNews(newsCategory) {
+export function useFetchNews(newsCategory: string) {
   const { data: newsData } = useSWR(
     `https://bing-news-search1.p.rapidapi.com/news/search?q=${newsCategory}&safeSearch=Off&textFormat=Raw&freshness=Day`,
     newsFetcher

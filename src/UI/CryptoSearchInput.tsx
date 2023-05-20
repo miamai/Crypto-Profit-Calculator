@@ -7,7 +7,7 @@ const CryptoSearchInput = (props) => {
       options={cryptoList}
       sx={{ width: ['100%', '300px'] }}
       onChange={(event, newValue) => {
-        event.defaultMuiPrevented = true;
+        event.defaultPrevented = true;
         props.setEnteredCoin(newValue.symbol);
       }}
       getOptionLabel={(option) => option.symbol}

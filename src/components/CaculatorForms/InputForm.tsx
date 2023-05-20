@@ -1,5 +1,5 @@
 import { useContext, useState } from 'react';
-import { Paper, TextField, Button, Box } from '@mui/material';
+import { Paper, TextField, Button, Box, SxProps, Theme } from '@mui/material';
 import CryptoSearchInput from '../../UI/CryptoSearchInput';
 import FormContext from '../../store/form-context';
 
@@ -9,14 +9,14 @@ const InputForm = () => {
   const [enteredCost, setEnteredCost] = useState('');
   const [enteredQuantity, setEnteredQuantity] = useState('');
 
-  const style = {
+  const style: SxProps<Theme> = {
     display: 'flex',
     flexDirection: ['column', 'row', null],
     m: [1, 2, null],
     gap: [1, 2, null],
   };
 
-  const submitFormHandler = (e) => {
+  const submitFormHandler = (e: React.SyntheticEvent) => {
     e.preventDefault();
     addItemHandler(enteredCoin, enteredCost, enteredQuantity);
     setEnteredCost('');

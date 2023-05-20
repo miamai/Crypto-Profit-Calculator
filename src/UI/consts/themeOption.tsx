@@ -1,5 +1,12 @@
 import { createTheme, responsiveFontSizes } from '@mui/material/styles';
 
+declare module '@mui/material/styles' {
+  interface TypeText {
+    gain: string;
+    loss: string;
+  }
+}
+
 // primary 黃
 // secondary 紅
 const themeOption = createTheme({

@@ -129,7 +129,7 @@ const News = () => {
                         fontSize='14px'
                         alignSelf='flex-end'
                       >
-                        {moment(news.dataPublished).startOf('ss').fromNow()}
+                        {moment(news.dataPublished).startOf('s').fromNow()}
                       </Typography>
                     </Box>
                   </Box>

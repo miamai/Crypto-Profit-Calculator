@@ -3,14 +3,14 @@ import { useContext } from 'react';
 import FormContext from '../store/form-context';
 
 // fetcher
-const fetcher = (url) => fetch(url).then((res) => res.json());
+const fetcher = (url: URL) => fetch(url).then((res) => res.json());
 
-const twdFetcher = (url) =>
+const twdFetcher = (url: URL) =>
   fetch(url)
     .then((res) => res.json())
     .then((res) => res.data.rates.TWD);
 
-const chartFetcher = (url) =>
+const chartFetcher = (url: URL) =>
   fetch(url)
     .then((res) => res.json())
     .then((res) => {
@@ -31,8 +31,7 @@ export function useFetchData() {
   const inputcryptos = inputList?.map((el) => `"${el.coin + 'USDT'}"`);
   const searchcryptos = searchList?.map((el) => `"${el.favCoin + 'USDT'}"`);
 
-  const query = [...new Set([...inputcryptos, ...searchcryptos])];
-
+  const query = Array.from(new Set([...inputcryptos, ...searchcryptos]));
   const { data: cryptoData, error: cryptoError } = useSWR(
     query.length === 0
       ? null
@@ -53,7 +52,7 @@ export function useFetchData() {
   };
 }
 
-export function useFetchChart(coin) {
+export function useFetchChart(coin: string) {
   const { data: historialData, error: fetchChartError } = useSWR(
     `https://api.binance.com/api/v1/klines?symbol=${coin}USDT&interval=1h&limit=24&startTime=${start}`,
     chartFetcher,
