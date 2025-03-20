@@ -1,23 +1,25 @@
-import useSWR from 'swr';
+import useSWR from "swr";
 
-const newsFetcher = (url: URL) => {
-  //Explicit return
-  return fetch(url, {
+export const newsFetcher = async (url: URL) => {
+  const option = {
+    method: "GET",
     headers: {
-      'X-BingApis-SDK': 'true',
-      'X-RapidAPI-Key': import.meta.env.VITE_RAPID_API_KEY,
-      'X-RapidAPI-Host': 'bing-news-search1.p.rapidapi.com',
+      "X-BingApis-SDK": "true",
+      "X-RapidAPI-Key": import.meta.env.VITE_RAPID_API_KEY,
+      "X-RapidAPI-Host": "cryptocurrency-news2.p.rapidapi.com",
     },
-  })
-    .then((res) => res.json())
-    .then((res) => {
-      return res.value;
-    });
+  };
+  const response = await fetch(url, option);
+  if (!response.ok) {
+    throw new Error("Failed to fetch news");
+  }
+  const data = await response.json();
+  return data.data;
 };
 
-export function useFetchNews(newsCategory: string) {
+export function useFetchNews(newsProvider: string) {
   const { data: newsData } = useSWR(
-    `https://bing-news-search1.p.rapidapi.com/news/search?q=${newsCategory}&safeSearch=Off&textFormat=Raw&freshness=Day`,
+    `https://cryptocurrency-news2.p.rapidapi.com/v1/${newsProvider}`,
     newsFetcher
   );
 
