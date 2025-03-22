@@ -2,7 +2,7 @@
 
 ![preview](https://github.com/miamai/Crypto-Profit-Caculator/blob/main/public/preview.png)
 
-### 介紹
+## Introduce
 
 以前用 Google sheet 串聯 Binance Api 來計算，因此學習後希望能製作一個 web app 計算外，並且能有更多功能，所以後面加上紀錄保存、即時消息、存取最愛等使用。
 
@@ -17,7 +17,7 @@
 
 ---
 
-### Technologies
+## Technologies
 
 - React, React-Router
 - Firebase: Login/Logout, Authentication, Fetch/Store user's crypto
@@ -46,4 +46,5 @@
 
 - Binance Api: Fetch USDT trading pairs
 - Coinbase Api: USDT/TWD ratio
-- Rapid Api/ Bing News Search Api: Crypto news
+- Rapid Api/ Bing News Search Api: Cryptocurrency News
+
